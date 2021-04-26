@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-export default function AuthForm(props){
+const AuthForm = (props) => {
   const {
     handleChange, 
     handleSubmit, 
     btnText,
-    errMsg, 
+    errMsg,
     inputs: {
       username, 
       password
@@ -27,7 +27,9 @@ export default function AuthForm(props){
         onChange={handleChange} 
         placeholder="Password"/>
       <button>{ btnText }</button>
-      <p style={{color: "red"}}>{ errMsg }</p>
+      <p style={{color: "red"}}>{errMsg}</p>
     </form>
   )
 }
+
+export default AuthForm;
