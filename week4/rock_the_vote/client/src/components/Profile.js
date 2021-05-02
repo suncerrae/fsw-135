@@ -5,7 +5,7 @@ import { UserContext } from '../context/UserProvider';
 
 const Profile = () => {
 
-  const { addIssue, issues } = useContext(UserContext);
+  const { addIssue, issues,addComment } = useContext(UserContext);
 
   const {
     user: {
@@ -18,7 +18,7 @@ const Profile = () => {
       <h1>Welcome {username}!</h1>
       <IssueForm addIssue={addIssue}/>
       <h3>Profile Issues</h3>
-      <IssueList issues={issues}/>
+      <IssueList addComment={addComment} issues={issues}/>
       </div>
   )
 }

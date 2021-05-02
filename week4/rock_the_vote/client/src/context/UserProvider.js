@@ -16,7 +16,7 @@ const UserProvider = (props) => {
         user: JSON.parse(localStorage.getItem("user")) || {}, 
         token: localStorage.getItem("token") || "", 
         issues: [], 
-        comments: [],
+        comment: [],
         errMsg: ""
     }
 
@@ -60,7 +60,7 @@ const UserProvider = (props) => {
             user: {},
             token: "",
             issues: [],
-            comments: []
+            comment: []
         })
     }
 
@@ -111,7 +111,17 @@ const UserProvider = (props) => {
         .catch(err => console.log(err.response.data.errMsg))
     }
 
-
+    function addComment(newComment){
+        userAxios.post("/api/comment", newComment)
+        .then(res => {
+            console.log (res)
+            setUserState(prevState => ({
+                ...prevState,
+                comment: [...prevState.comment, res.data]
+            }))
+        })
+        .catch(err => console.log(err.response.data.errMsg))
+    }
         return(
             <UserContext.Provider
                 value={{
@@ -120,6 +130,7 @@ const UserProvider = (props) => {
                     login,
                     logout,
                     addIssue,
+                    addComment,
                     resetAuthErr,
                     getAllIssues
                 }}>
